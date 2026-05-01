@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="india.css"/>
 <link rel="stylesheet" href="features.css"/>
 <link rel="stylesheet" href="a11y.css"/>
+<link rel="stylesheet" href="gemini.css"/>
 <link rel="stylesheet" href="mobile.css"/>
 <!-- Firebase SDK (Google Cloud) -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -634,6 +635,42 @@
   </div>
 </section>
 
+<!-- 🤖 GEMINI AI CHAT SECTION -->
+<section class="ai-chat-section" id="ai-chat" aria-label="AI Chatbot powered by Google Gemini">
+  <div class="section-head">
+    <div class="section-badge light">✨ Google AI / ML API</div>
+    <h2 style="color:#fff">Ask <span class="gradient-text">VoteBot</span></h2>
+    <p style="color:#94a3b8">Powered by Google Gemini 1.5 Flash. Get instant answers about Indian elections, ECI, EVMs, or your voter rights.</p>
+  </div>
+  
+  <div class="ai-chat-container">
+    <div class="chat-header">
+      <div class="chat-header-avatar">🤖</div>
+      <div class="chat-header-info">
+        <h4>VoteBot</h4>
+        <p>Google Gemini AI Assistant</p>
+      </div>
+      <div class="chat-status"><span class="status-dot"></span> Online</div>
+    </div>
+    
+    <div class="chat-messages" id="chatMessages" role="list" aria-live="polite" aria-relevant="additions">
+      <!-- Messages populate here -->
+    </div>
+    
+    <div class="chat-suggestions" aria-label="Suggested questions">
+      <button class="suggest-btn" onclick="askSuggestion('How does an EVM work?')" aria-label="Ask how an EVM works">How does an EVM work?</button>
+      <button class="suggest-btn" onclick="askSuggestion('What is the Model Code of Conduct?')" aria-label="Ask about Model Code of Conduct">What is the Model Code of Conduct?</button>
+      <button class="suggest-btn" onclick="askSuggestion('How do I register to vote?')" aria-label="Ask how to register to vote">How do I register to vote?</button>
+    </div>
+    
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" placeholder="Ask anything about Indian elections..." onkeydown="handleChatKeydown(event)" aria-label="Type your question here" />
+      <button id="chatSendBtn" onclick="sendChatMessage()" aria-label="Send message">Send 🚀</button>
+    </div>
+    <div class="gemini-badge">Powered by <a href="https://ai.google.dev/" target="_blank" rel="noopener">Google Gemini API</a></div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
@@ -670,7 +707,19 @@
 <script src="app.js"></script>
 <script src="features.js"></script>
 <script src="firebase.js"></script>
+<script src="gemini.js"></script>
 <script src="tests.js"></script>
+
+<!-- REGISTER SERVICE WORKER FOR OFFLINE CACHING -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('✅ Service Worker registered (Offline ready)'))
+        .catch(err => console.error('Service Worker registration failed:', err));
+    });
+  }
+</script>
 </main>
 </body>
 </html>
