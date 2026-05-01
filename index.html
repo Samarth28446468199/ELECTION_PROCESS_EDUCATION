@@ -5,37 +5,50 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>VoteIndia | Indian Election Process Education</title>
 <meta name="description" content="Learn how Indian elections work — from ECI to results. Complete guide to India's democratic process."/>
+<meta name="theme-color" content="#6366f1"/>
+<meta name="robots" content="index,follow"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 <link rel="stylesheet" href="india.css"/>
 <link rel="stylesheet" href="features.css"/>
+<link rel="stylesheet" href="a11y.css"/>
 <link rel="stylesheet" href="mobile.css"/>
+<!-- Firebase SDK (Google Cloud) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-trail" id="trail"></div>
+<!-- Skip to main content (Accessibility) -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-trail" id="trail" aria-hidden="true"></div>
+<!-- Test Results Panel -->
+<div class="test-panel" id="testPanel" role="status" aria-live="polite" aria-label="Test results"></div>
 
 <!-- NAVBAR -->
-<nav class="navbar" id="navbar">
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="#hero" class="logo">🇮🇳 <span>Vote<strong>India</strong></span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#eci">ECI</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#types">Elections</a></li>
-      <li><a href="#evm">EVM</a></li>
-      <li><a href="#register">Register</a></li>
-      <li><a href="#results">Results</a></li>
-      <li><a href="#quiz">Quiz</a></li>
-      <li><a href="#register" class="nav-cta">Get Voter Card</a></li>
+    <a href="#hero" class="logo" aria-label="VoteIndia Home">🇮🇳 <span>Vote<strong>India</strong></span></a>
+    <ul class="nav-links" id="navLinks" role="menubar">
+      <li role="none"><a href="#eci" role="menuitem">ECI</a></li>
+      <li role="none"><a href="#process" role="menuitem">Process</a></li>
+      <li role="none"><a href="#types" role="menuitem">Elections</a></li>
+      <li role="none"><a href="#evm" role="menuitem">EVM</a></li>
+      <li role="none"><a href="#register" role="menuitem">Register</a></li>
+      <li role="none"><a href="#results" role="menuitem">Results</a></li>
+      <li role="none"><a href="#quiz" role="menuitem">Quiz</a></li>
+      <li role="none"><a href="#register" class="nav-cta" role="menuitem">Get Voter Card</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="navLinks">☰</button>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="hero">
+<main id="main-content">
+<section class="hero" id="hero" aria-label="Hero section">
   <div class="hero-bg">
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
@@ -436,6 +449,7 @@
     <div class="section-head">
       <div class="section-badge light">🪪 Form 6 — EPIC Card</div>
       <h2 style="color:#fff">Register for Your <span class="gradient-text">Voter ID Card</span></h2>
+      <div class="reg-count-badge" id="regCount" aria-live="polite">Loading registrations...</div>
       <p style="color:#94a3b8">Fill this form to generate your mock EPIC (Electoral Photo Identity Card) preview and get step-by-step guidance to register officially.</p>
     </div>
     <div class="reg-layout">
@@ -650,5 +664,8 @@
 </footer>
 <script src="app.js"></script>
 <script src="features.js"></script>
+<script src="firebase.js"></script>
+<script src="tests.js"></script>
+</main>
 </body>
 </html>
