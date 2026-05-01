@@ -121,29 +121,36 @@ const sectionIO = new IntersectionObserver(entries => {
 document.querySelectorAll('section[id]').forEach(s => sectionIO.observe(s));
 
 // ── 3. GOOGLE MAPS EMBED for Booth Finder ────────────────────────
-const STATE_MAPS = {
-  UP: 'Lucknow+Uttar+Pradesh+India',
-  MH: 'Mumbai+Maharashtra+India',
-  DL: 'New+Delhi+India',
-  KA: 'Bengaluru+Karnataka+India',
-  TN: 'Chennai+Tamil+Nadu+India',
-  WB: 'Kolkata+West+Bengal+India',
-  GJ: 'Ahmedabad+Gujarat+India',
-  RJ: 'Jaipur+Rajasthan+India',
+const STATE_COORDS = {
+  UP:  { lat: 26.8467, lon: 80.9462, name: 'Lucknow, Uttar Pradesh' },
+  MH:  { lat: 19.0760, lon: 72.8777, name: 'Mumbai, Maharashtra' },
+  DL:  { lat: 28.6139, lon: 77.2090, name: 'New Delhi' },
+  KA:  { lat: 12.9716, lon: 77.5946, name: 'Bengaluru, Karnataka' },
+  TN:  { lat: 13.0827, lon: 80.2707, name: 'Chennai, Tamil Nadu' },
+  WB:  { lat: 22.5726, lon: 88.3639, name: 'Kolkata, West Bengal' },
+  GJ:  { lat: 23.0225, lon: 72.5714, name: 'Ahmedabad, Gujarat' },
+  RJ:  { lat: 26.9124, lon: 75.7873, name: 'Jaipur, Rajasthan' },
 };
 
 function embedGoogleMap(stateCode) {
-  const query = STATE_MAPS[stateCode] || 'India';
+  const info = STATE_COORDS[stateCode];
   const mapEl = document.getElementById('boothMap');
-  if (!mapEl) return;
+  if (!mapEl || !info) return;
+  // Use OpenStreetMap embed (no API key required, always works)
+  const zoom = 12;
   mapEl.innerHTML = `
     <iframe
-      title="Polling booth location map for ${stateCode}"
-      src="https://www.google.com/maps/embed/v1/search?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNB4&q=government+school+polling+booth+${query}"
-      width="100%" height="280" style="border:0;border-radius:1rem;" allowfullscreen loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>`;
-  logGAEvent('booth_finder_used', { state: stateCode });
+      title="Polling booth location map for ${info.name}"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=${info.lon-0.1},${info.lat-0.1},${info.lon+0.1},${info.lat+0.1}&layer=mapnik&marker=${info.lat},${info.lon}"
+      width="100%" height="260"
+      style="border:0;border-radius:1rem;margin-top:.5rem"
+      allowfullscreen loading="lazy"
+      aria-label="Map showing polling area in ${info.name}">
+    </iframe>
+    <p style="font-size:.72rem;color:var(--muted);margin-top:.4rem;text-align:right">
+      📍 Map: ${info.name} — <a href="https://www.openstreetmap.org/?mlat=${info.lat}&mlon=${info.lon}#map=${zoom}/${info.lat}/${info.lon}" target="_blank" rel="noopener" style="color:var(--indigo)">Open in Maps ↗</a>
+    </p>`;
+  if (typeof logGAEvent === 'function') logGAEvent('map_viewed', { state: stateCode, region: info.name });
 }
 
 // Init all Google services

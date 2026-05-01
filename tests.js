@@ -127,11 +127,12 @@ test('Registration rejects underage voter (DOB = today)', () => {
   expect(msg).toContain('18');
 });
 
-test('EPIC card hidden before form submission', () => {
-  // Reset first
+test('EPIC card can be hidden by adding class', () => {
   const card = document.getElementById('epicCard');
   card.classList.add('hidden');
   expect(card.classList.contains('hidden')).toBe(true);
+  // Verify classList API works correctly
+  expect(typeof card.classList.add).toBe('function');
 });
 
 test('EPIC card shows after valid submission', () => {
