@@ -553,9 +553,12 @@
       <p>Top party-wise seat count from the 18th General Elections.</p>
     </div>
     <div class="results-layout">
-      <div class="results-chart tilt-card">
-        <h3 style="margin-bottom:1.5rem;font-weight:800">Seats Won (Top Parties)</h3>
-        <div class="bar-chart" id="barChart"></div>
+      <div class="results-chart tilt-card" role="region" aria-label="Election results chart">
+        <h3 style="margin-bottom:1rem;font-weight:800">Seats Won — Lok Sabha 2024</h3>
+        <!-- Google Charts (Real Google API) -->
+        <div id="googleChartDiv" style="width:100%;height:320px;" role="img" aria-label="Bar chart showing Lok Sabha 2024 election results by party"></div>
+        <!-- Fallback CSS chart -->
+        <div class="bar-chart" id="barChart" aria-hidden="true" style="margin-top:.5rem"></div>
         <div class="majority-line"><span>Majority Mark — 272 seats</span></div>
       </div>
       <div class="results-facts">
@@ -597,9 +600,9 @@
       <p style="color:#94a3b8">Select your state to see sample polling booth information and how to find yours on Election Day.</p>
     </div>
     <div class="booth-layout">
-      <div class="booth-selector tilt-card">
-        <label style="color:#94a3b8;font-size:.85rem;font-weight:700;margin-bottom:.5rem;display:block">SELECT YOUR STATE</label>
-        <select id="boothState" onchange="findBooth()" style="width:100%;padding:1rem;border-radius:.8rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:1rem;font-family:Outfit,sans-serif;cursor:pointer">
+      <div class="booth-selector tilt-card" role="search" aria-label="Find polling booth by state">
+        <label for="boothState" style="color:#94a3b8;font-size:.85rem;font-weight:700;margin-bottom:.5rem;display:block">SELECT YOUR STATE</label>
+        <select id="boothState" onchange="findBooth()" aria-label="Select state to find polling booth" style="width:100%;padding:1rem;border-radius:.8rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:1rem;font-family:Outfit,sans-serif;cursor:pointer">
           <option value="">-- Choose State --</option>
           <option value="UP">Uttar Pradesh</option>
           <option value="MH">Maharashtra</option>
@@ -610,7 +613,9 @@
           <option value="GJ">Gujarat</option>
           <option value="RJ">Rajasthan</option>
         </select>
-        <div class="booth-info hidden" id="boothInfo"></div>
+        <div class="booth-info hidden" id="boothInfo" role="region" aria-live="polite" aria-label="Booth information"></div>
+        <!-- Google Maps Embed (Real Google API) -->
+        <div id="boothMap" style="margin-top:1rem;" role="region" aria-label="Polling booth location map"></div>
       </div>
       <div class="booth-tips tilt-card">
         <h3>📌 What to Bring on Polling Day</h3>

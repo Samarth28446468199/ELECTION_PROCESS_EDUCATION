@@ -101,15 +101,18 @@ const boothData = {
 function findBooth(){
   const state = document.getElementById('boothState').value;
   const infoEl = document.getElementById('boothInfo');
-  if(!state){ infoEl.classList.add('hidden'); return; }
+  if(!state){ infoEl.classList.add('hidden'); document.getElementById('boothMap').innerHTML=''; return; }
   const d = boothData[state];
+  const stateName = document.getElementById('boothState').options[document.getElementById('boothState').selectedIndex].text;
   infoEl.classList.remove('hidden');
   infoEl.innerHTML = `
-    <h4 style="font-weight:800;margin-bottom:1rem;font-size:1rem">📍 ${document.getElementById('boothState').options[document.getElementById('boothState').selectedIndex].text}</h4>
+    <h4 style="font-weight:800;margin-bottom:1rem;font-size:1rem" aria-live="polite">📍 ${stateName}</h4>
     <div style="display:flex;flex-direction:column;gap:.7rem">
       <div style="font-size:.85rem;color:var(--muted)">🏛️ <strong style="color:var(--text)">Total Booths:</strong> ${d.totalBooths.toLocaleString('en-IN')}</div>
       <div style="font-size:.85rem;color:var(--muted)">🗓️ <strong style="color:var(--text)">Polling Hours:</strong> ${d.days}</div>
       <div style="font-size:.82rem;color:var(--muted)">📋 <strong style="color:var(--text)">Sample Booth:</strong> ${d.sampleBooth}</div>
-      <a href="${d.searchUrl}" target="_blank" class="btn-primary" style="margin-top:.5rem;font-size:.85rem;padding:.6rem 1.2rem">Find Your Exact Booth →</a>
+      <a href="${d.searchUrl}" target="_blank" rel="noopener" class="btn-primary" aria-label="Find your exact polling booth for ${stateName}" style="margin-top:.5rem;font-size:.85rem;padding:.6rem 1.2rem">Find Your Exact Booth →</a>
     </div>`;
+  // Call Google Maps embed from firebase.js
+  if(typeof embedGoogleMap === 'function') embedGoogleMap(state);
 }
