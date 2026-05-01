@@ -1,154 +1,183 @@
 /* ── CURSOR ─────────────────────────────── */
-const cursor = document.getElementById('cursor');
-const trail  = document.getElementById('cursorTrail');
+const cursor=document.getElementById('cursor'),trail=document.getElementById('trail');
 let mx=0,my=0,tx=0,ty=0;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.transform = `translate(${mx-8}px,${my-8}px)`;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.transform=`translate(${mx-8}px,${my-8}px)`;
 });
 (function animTrail(){
-  tx += (mx-tx)*.12; ty += (my-ty)*.12;
-  trail.style.transform = `translate(${tx-20}px,${ty-20}px)`;
+  tx+=(mx-tx)*.12;ty+=(my-ty)*.12;
+  trail.style.transform=`translate(${tx-20}px,${ty-20}px)`;
   requestAnimationFrame(animTrail);
 })();
-document.querySelectorAll('a,button,.quiz-opt').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cursor.style.transform+=` scale(2)`;cursor.style.opacity='.5'});
-  el.addEventListener('mouseleave',()=>{cursor.style.opacity='1'});
-});
 
-/* ── NAVBAR SCROLL ──────────────────────── */
-const navbar = document.getElementById('navbar');
+/* ── NAVBAR ─────────────────────────────── */
 window.addEventListener('scroll',()=>{
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
 });
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
 
 /* ── SCROLL ANIMATIONS ──────────────────── */
-const aosEls = document.querySelectorAll('[data-aos]');
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
 },{threshold:0.15});
-aosEls.forEach(el=>observer.observe(el));
+document.querySelectorAll('[data-aos]').forEach(el=>observer.observe(el));
 
-/* ── MOUSE TILT ─────────────────────────── */
+/* ── TILT CARDS ─────────────────────────── */
 document.querySelectorAll('.tilt-card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
-    const r = card.getBoundingClientRect();
-    const x = ((e.clientX-r.left)/r.width -.5)*18;
-    const y = ((e.clientY-r.top)/r.height-.5)*18;
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*16;
+    const y=((e.clientY-r.top)/r.height-.5)*16;
     card.style.transform=`perspective(800px) rotateY(${x}deg) rotateX(${-y}deg) scale(1.03)`;
   });
   card.addEventListener('mouseleave',()=>{card.style.transform='';});
 });
 
 /* ── HERO PARALLAX ──────────────────────── */
-const heroVisual = document.getElementById('heroVisual');
+const heroVisual=document.getElementById('heroVisual');
 document.addEventListener('mousemove',e=>{
-  if(!heroVisual) return;
-  const xOff = (e.clientX/window.innerWidth-.5)*18;
-  const yOff = (e.clientY/window.innerHeight-.5)*12;
-  heroVisual.style.transform=`perspective(900px) rotateY(${xOff}deg) rotateX(${-yOff}deg)`;
+  if(!heroVisual)return;
+  const xo=(e.clientX/window.innerWidth-.5)*18;
+  const yo=(e.clientY/window.innerHeight-.5)*12;
+  heroVisual.style.transform=`perspective(900px) rotateY(${xo}deg) rotateX(${-yo}deg)`;
 });
 
-/* ── QUIZ ───────────────────────────────── */
-const questions = [
-  { q:"What is the minimum age to vote in most democracies?",
-    opts:["16","18","21","25"], ans:1,
-    exp:"Most countries set the voting age at 18, though some (e.g. Scotland) allow 16." },
-  { q:"What does 'FPTP' stand for in voting systems?",
-    opts:["First Past The Post","Federal Party Transfer Protocol","Fair Poll Tally Process","Final Public Tally Poll"], ans:0,
-    exp:"First Past the Post — the candidate with the most votes wins, even without a majority." },
-  { q:"Which document guarantees citizens the right to vote?",
-    opts:["Tax code","Constitution","Budget bill","Trade agreement"], ans:1,
-    exp:"The Constitution (or equivalent supreme law) protects voting rights in democracies." },
-  { q:"What is a 'by-election'?",
-    opts:["An election held by companies","A local school vote","An election to fill a vacant seat mid-term","An election for vice-president only"], ans:2,
-    exp:"A by-election fills a seat that becomes vacant between regular elections." },
-  { q:"Which voting system lets voters rank candidates 1, 2, 3...?",
-    opts:["First Past the Post","Two-Round System","Ranked-Choice Voting","Block Voting"], ans:2,
-    exp:"Ranked-Choice Voting (also called Instant Runoff) lets voters rank preferences." },
-  { q:"What is the purpose of a 'secret ballot'?",
-    opts:["To hide election results","To protect voters from coercion","To speed up counting","To reduce voter turnout"], ans:1,
-    exp:"The secret ballot ensures no one can see how you voted, protecting you from pressure or retaliation." },
+/* ── EVM DEMO ───────────────────────────── */
+const candidates=['BJP','INC','SP','NOTA'];
+function pressEVM(btn){
+  const screen=document.getElementById('vvpatScreen');
+  const name=btn.textContent.trim();
+  btn.style.background='rgba(99,102,241,.3)';
+  btn.style.borderColor='rgba(99,102,241,.7)';
+  setTimeout(()=>{btn.style.background='';btn.style.borderColor='';},600);
+  screen.textContent=`✅ Vote recorded: ${name}`;
+  screen.style.color='#34d399';
+  screen.style.borderColor='rgba(16,185,129,.5)';
+  setTimeout(()=>{
+    screen.textContent='Press a button →';
+    screen.style.color='#fbbf24';
+    screen.style.borderColor='rgba(245,158,11,.2)';
+  },3000);
+}
+
+/* ── VOTER ELIGIBILITY CHECKER ──────────── */
+let checkStep_num=1;
+function checkStep(step,answer){
+  if(answer==='no'){
+    showCheckerResult(false,step);return;
+  }
+  checkStep_num=step+1;
+  if(checkStep_num>3){showCheckerResult(true);return;}
+  document.getElementById('step'+step).classList.remove('active');
+  document.getElementById('step'+checkStep_num).classList.add('active');
+}
+function showCheckerResult(eligible,failStep){
+  for(let i=1;i<=3;i++){
+    const s=document.getElementById('step'+i);
+    if(s)s.classList.remove('active');
+  }
+  const res=document.getElementById('checkerResult');
+  const icon=document.getElementById('crIcon');
+  const title=document.getElementById('crTitle');
+  const msg=document.getElementById('crMsg');
+  res.classList.remove('hidden');
+  if(eligible){
+    icon.textContent='🎉';
+    title.textContent='You ARE eligible to vote in India!';
+    msg.textContent='Register on the NVSP portal (voters.eci.gov.in) or visit your local Electoral Registration Officer office.';
+  } else {
+    icon.textContent='❌';
+    title.textContent='You may not be eligible to vote.';
+    const reasons=['','You must be an Indian citizen to vote.','You must be at least 18 years old on the qualifying date.','You must be of sound mind and not disqualified by a court.'];
+    msg.textContent=reasons[failStep]||'Please check the official ECI website for more information.';
+  }
+}
+function resetChecker(){
+  checkStep_num=1;
+  document.getElementById('checkerResult').classList.add('hidden');
+  document.getElementById('step1').classList.add('active');
+}
+
+/* ── INDIA QUIZ ─────────────────────────── */
+const questions=[
+  {q:'Under which Article of the Indian Constitution is the Election Commission of India established?',opts:['Article 310','Article 315','Article 324','Article 356'],ans:2,exp:'Article 324 establishes the Election Commission of India.'},
+  {q:'What is the minimum age to vote in India?',opts:['16 years','18 years','21 years','25 years'],ans:1,exp:'The voting age in India was lowered from 21 to 18 years in 1989 via the 61st Constitutional Amendment.'},
+  {q:'How many seats does a party need for a majority in the Lok Sabha?',opts:['250','272','300','543'],ans:1,exp:'272 seats (out of 543) constitute a simple majority in the Lok Sabha.'},
+  {q:'What does NOTA stand for?',opts:['No Official Tally Available','None of the Above','National Option for Transfer Agreement','Not On The Application'],ans:1,exp:'NOTA stands for "None of the Above" — introduced by Supreme Court order in 2013.'},
+  {q:'Which body conducts Panchayat and Municipal elections in India?',opts:['Election Commission of India','State Election Commission','Ministry of Home Affairs','State Government'],ans:1,exp:'State Election Commissions (SECs), not the central ECI, conduct local body elections.'},
+  {q:'How many phases were there in the 2024 Lok Sabha election?',opts:['5','6','7','8'],ans:2,exp:'The 2024 Lok Sabha elections were conducted in 7 phases from April 19 to June 1, 2024.'},
+  {q:'What is the Model Code of Conduct (MCC)?',opts:['A code for candidates to memorize speeches','Guidelines restricting the government and parties during election period','A document candidates must sign','Rules for voting booth behavior'],ans:1,exp:'The MCC is a set of guidelines issued by ECI to regulate political parties and the government during election period.'},
+  {q:'Which document introduced the NOTA option in Indian elections?',opts:['Parliament Act 2013','ECI Directive 2013','Supreme Court Order in PUCL vs Union of India case','Presidential Ordinance'],ans:2,exp:'The Supreme Court in the PUCL vs Union of India (2013) case directed ECI to include NOTA as an option on EVMs.'},
 ];
 
-let current=0, score=0;
-const qEl   = document.getElementById('quizQuestion');
-const optsEl = document.getElementById('quizOptions');
-const counterEl = document.getElementById('quizCounter');
-const scoreEl   = document.getElementById('quizScore');
-const progressEl= document.getElementById('quizProgressFill');
-const cardEl    = document.getElementById('quizCard');
-const resultEl  = document.getElementById('quizResult');
+let cur=0,score=0;
+const qText=document.getElementById('qText');
+const qOpts=document.getElementById('qOpts');
+const qCounter=document.getElementById('qCounter');
+const qScore=document.getElementById('qScore');
+const quizFill=document.getElementById('quizFill');
+const quizCard=document.getElementById('quizCard');
+const quizResult=document.getElementById('quizResult');
 
-function loadQuestion(){
-  const q = questions[current];
-  qEl.textContent = q.q;
-  optsEl.innerHTML='';
-  counterEl.textContent=`Question ${current+1} of ${questions.length}`;
-  progressEl.style.width=`${(current/questions.length)*100}%`;
-  q.opts.forEach((opt,i)=>{
-    const btn=document.createElement('button');
-    btn.className='quiz-opt'; btn.textContent=opt;
-    btn.addEventListener('click',()=>selectAnswer(i,btn));
-    optsEl.appendChild(btn);
+function loadQ(){
+  const q=questions[cur];
+  qText.textContent=q.q;
+  qOpts.innerHTML='';
+  qCounter.textContent=`Question ${cur+1} of ${questions.length}`;
+  quizFill.style.width=`${(cur/questions.length)*100}%`;
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='quiz-opt';b.textContent=o;
+    b.addEventListener('click',()=>answerQ(i,b));
+    qOpts.appendChild(b);
   });
 }
 
-function selectAnswer(idx,btn){
-  const q=questions[current];
-  const btns=optsEl.querySelectorAll('.quiz-opt');
-  btns.forEach(b=>b.disabled=true);
-  if(idx===q.ans){ btn.classList.add('correct'); score++; scoreEl.textContent=`Score: ${score}`; }
-  else { btn.classList.add('wrong'); btns[q.ans].classList.add('correct'); }
+function answerQ(idx,btn){
+  const q=questions[cur];
+  qOpts.querySelectorAll('.quiz-opt').forEach(b=>b.disabled=true);
+  if(idx===q.ans){btn.classList.add('correct');score++;qScore.textContent=`Score: ${score}`;}
+  else{btn.classList.add('wrong');qOpts.querySelectorAll('.quiz-opt')[q.ans].classList.add('correct');}
   setTimeout(()=>{
-    current++;
-    if(current<questions.length) loadQuestion();
+    cur++;
+    if(cur<questions.length)loadQ();
     else showResult();
-  },1400);
+  },1500);
 }
 
 function showResult(){
-  progressEl.style.width='100%';
-  cardEl.classList.add('hidden');
-  resultEl.classList.remove('hidden');
-  const ri=document.getElementById('resultIcon');
-  const rt=document.getElementById('resultTitle');
-  const rd=document.getElementById('resultDesc');
-  document.getElementById('finalScore').textContent=score;
-  if(score===6){ri.textContent='🏆';rt.textContent='Perfect Score!';}
-  else if(score>=4){ri.textContent='🎉';rt.textContent='Great Job!';}
-  else if(score>=2){ri.textContent='📚';rt.textContent='Keep Learning!';}
-  else{ri.textContent='🗳️';rt.textContent='Let\'s Try Again!';}
+  quizFill.style.width='100%';
+  quizCard.classList.add('hidden');
+  quizResult.classList.remove('hidden');
+  document.getElementById('rScore').textContent=score;
+  const icon=document.getElementById('rIcon'),title=document.getElementById('rTitle');
+  if(score>=7){icon.textContent='🏆';title.textContent='Civic Champion!';}
+  else if(score>=5){icon.textContent='🎉';title.textContent='Well Done!';}
+  else if(score>=3){icon.textContent='📚';title.textContent='Keep Learning!';}
+  else{icon.textContent='🗳️';title.textContent='Let\'s Try Again!';}
 }
 
 function resetQuiz(){
-  current=0;score=0;
-  scoreEl.textContent='Score: 0';
-  cardEl.classList.remove('hidden');
-  resultEl.classList.add('hidden');
-  loadQuestion();
+  cur=0;score=0;
+  qScore.textContent='Score: 0';
+  quizCard.classList.remove('hidden');
+  quizResult.classList.add('hidden');
+  loadQ();
 }
 
-loadQuestion();
+loadQ();
 
-/* ── COUNTER ANIMATION ──────────────────── */
-function animateCounters(){
-  document.querySelectorAll('.stat span').forEach(el=>{
-    const txt=el.textContent;
-    if(!isNaN(parseFloat(txt))) return; // skip already animated
-    el.setAttribute('data-target',txt);
-  });
-}
-animateCounters();
-
-/* ── SMOOTH SCROLL FOR NAV ──────────────── */
+/* ── SMOOTH SCROLL ──────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     e.preventDefault();
-    const target=document.querySelector(a.getAttribute('href'));
-    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+    document.getElementById('navLinks').classList.remove('open');
   });
 });
 
-console.log('%c🗳️ VoteWise | Election Process Education','color:#6366f1;font-size:1.2rem;font-weight:bold');
-console.log('%cBuilt for Hackathon 2026 — Civic Tech Track','color:#94a3b8;font-size:.9rem');
+console.log('%c🇮🇳 VoteIndia | Election Process Education','color:#ff9933;font-size:1.2rem;font-weight:bold');

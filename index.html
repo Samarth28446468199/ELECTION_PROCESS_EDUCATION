@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>VoteWise | Election Process Education</title>
-<meta name="description" content="Learn how elections work — from registration to results. A complete, interactive guide to the democratic process." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>VoteIndia | Indian Election Process Education</title>
+<meta name="description" content="Learn how Indian elections work — from ECI to results. Complete guide to India's democratic process."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="india.css"/>
+<link rel="stylesheet" href="mobile.css"/>
 </head>
 <body>
-
-<!-- ─── CURSOR ───────────────────────────────── -->
 <div class="cursor" id="cursor"></div>
-<div class="cursor-trail" id="cursorTrail"></div>
+<div class="cursor-trail" id="trail"></div>
 
-<!-- ─── NAVBAR ──────────────────────────────── -->
+<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="#hero" class="logo">
-      <div class="logo-icon">🗳️</div>
-      <span>Vote<strong>Wise</strong></span>
-    </a>
-    <ul class="nav-links">
+    <a href="#hero" class="logo">🇮🇳 <span>Vote<strong>India</strong></span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#eci">ECI</a></li>
       <li><a href="#process">Process</a></li>
-      <li><a href="#stages">Stages</a></li>
+      <li><a href="#types">Elections</a></li>
+      <li><a href="#evm">EVM</a></li>
       <li><a href="#quiz">Quiz</a></li>
-      <li><a href="#myths">Myths</a></li>
-      <li><a href="#register" class="nav-cta">Register to Vote</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#checkvote" class="nav-cta">Check Voter ID</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
   </div>
 </nav>
 
-<!-- ─── HERO ─────────────────────────────────── -->
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg">
     <div class="orb orb1"></div>
@@ -41,137 +40,279 @@
     <div class="orb orb3"></div>
     <div class="grid-overlay"></div>
   </div>
-
-  <!-- Floating 3D Cards -->
-  <div class="float-card fc1">📋<span>Register</span></div>
-  <div class="float-card fc2">🏛️<span>Candidate</span></div>
-  <div class="float-card fc3">✅<span>Vote!</span></div>
+  <div class="float-card fc1">🗳️<span>EVM</span></div>
+  <div class="float-card fc2">🏛️<span>Lok Sabha</span></div>
+  <div class="float-card fc3">🗂️<span>EPIC Card</span></div>
   <div class="float-card fc4">📊<span>Results</span></div>
 
   <div class="hero-content">
-    <div class="hero-badge">
-      <span class="pulse-dot"></span> Hackathon 2026 — Civic Tech Track
-    </div>
+    <div class="hero-badge"><span class="pulse-dot"></span> Hackathon 2026 — Civic Tech India</div>
     <h1 class="hero-title">
-      Understand<br>
-      <span class="gradient-text">Democracy</span><br>
-      From the Inside.
+      India's <span class="gradient-text">Democracy</span><br>Explained Simply.
     </h1>
-    <p class="hero-sub">
-      The election process demystified — interactive, 3D, and built for every citizen.
-      From voter registration to final results, we break it all down.
-    </p>
+    <p class="hero-sub">The world's largest democratic exercise — 968 million voters, 543 Lok Sabha seats, 28 states. Understand how YOUR vote shapes the nation.</p>
     <div class="hero-actions">
-      <a href="#process" class="btn-primary">Explore the Process ↓</a>
+      <a href="#process" class="btn-primary">Explore Process ↓</a>
       <a href="#quiz" class="btn-ghost">Take the Quiz →</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><span>180+</span><p>Countries Hold Elections</p></div>
+      <div class="stat"><span>968M+</span><p>Registered Voters</p></div>
       <div class="stat-divider"></div>
-      <div class="stat"><span>4.2B</span><p>Eligible Voters Worldwide</p></div>
+      <div class="stat"><span>543</span><p>Lok Sabha Seats</p></div>
       <div class="stat-divider"></div>
-      <div class="stat"><span>6 Steps</span><p>In Every Election</p></div>
+      <div class="stat"><span>1951</span><p>First General Election</p></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span>18+</span><p>Age to Vote</p></div>
     </div>
   </div>
-
   <div class="hero-visual" id="heroVisual">
     <div class="ballot-3d">
       <div class="ballot-face front">
-        <div class="ballot-header">🗳️ Official Ballot</div>
-        <div class="ballot-option active">◉ Candidate A</div>
-        <div class="ballot-option">◯ Candidate B</div>
-        <div class="ballot-option">◯ Candidate C</div>
-        <div class="ballot-submit">CAST VOTE ✓</div>
+        <div class="ballot-header">🗳️ EVM Ballot</div>
+        <div class="ballot-option active">🔵 BJP</div>
+        <div class="ballot-option">✋ INC</div>
+        <div class="ballot-option">🌾 SP</div>
+        <div class="ballot-option">🌸 TMC</div>
+        <div class="ballot-submit">NOTA ✓ PRESS BUTTON</div>
       </div>
-      <div class="ballot-face back"></div>
-      <div class="ballot-face right"></div>
-      <div class="ballot-face left"></div>
-      <div class="ballot-face top"></div>
-      <div class="ballot-face bottom"></div>
     </div>
   </div>
 </section>
 
-<!-- ─── PROCESS TIMELINE ──────────────────────── -->
-<section class="section" id="process">
+<!-- ECI SECTION -->
+<section class="section" id="eci">
   <div class="container">
     <div class="section-head">
-      <div class="section-badge">How It Works</div>
-      <h2>The Election <span class="gradient-text">Process</span></h2>
-      <p>Every free and fair election follows a structured sequence. Here's the full journey.</p>
+      <div class="section-badge">Election Commission of India</div>
+      <h2>The Guardian of <span class="gradient-text">Indian Democracy</span></h2>
+      <p>The ECI is an autonomous constitutional authority responsible for administering Union and State election processes in India.</p>
     </div>
+    <div class="eci-grid">
+      <div class="eci-card tilt-card">
+        <div class="eci-icon">⚖️</div>
+        <h3>Constitutional Body</h3>
+        <p>Established under <strong>Article 324</strong> of the Indian Constitution. It is independent of the government to ensure free and fair elections.</p>
+      </div>
+      <div class="eci-card tilt-card">
+        <div class="eci-icon">👨‍⚖️</div>
+        <h3>Chief Election Commissioner</h3>
+        <p>Led by the CEC, appointed by the President of India. Can only be removed via a process similar to a Supreme Court judge.</p>
+      </div>
+      <div class="eci-card tilt-card">
+        <div class="eci-icon">📋</div>
+        <h3>Model Code of Conduct</h3>
+        <p>The MCC kicks in from election announcement. Restricts the ruling government from making policy announcements that could influence voters.</p>
+      </div>
+      <div class="eci-card tilt-card">
+        <div class="eci-icon">🗓️</div>
+        <h3>Election Schedule</h3>
+        <p>ECI announces election dates, polling phases, candidate filing deadlines, and result dates. Lok Sabha elections occur in multiple phases.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- PROCESS TIMELINE -->
+<section class="section section-dark" id="process">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge light">Step by Step</div>
+      <h2 style="color:#fff">How Indian Elections <span class="gradient-text">Work</span></h2>
+      <p style="color:#94a3b8">From announcement to oath-taking — the complete Indian election journey.</p>
+    </div>
     <div class="timeline">
       <div class="timeline-line"></div>
-
       <div class="timeline-item" data-aos="left">
         <div class="timeline-dot">1</div>
         <div class="timeline-card tilt-card">
-          <div class="tcard-icon">📋</div>
-          <h3>Voter Registration</h3>
-          <p>Citizens must register before they can vote. Registration verifies identity, age (18+), and citizenship status. Deadlines vary by country and state.</p>
-          <div class="tcard-tags">
-            <span>ID Required</span><span>Deadline-bound</span><span>One-time</span>
-          </div>
+          <div class="tcard-icon">📢</div>
+          <h3>Election Announcement</h3>
+          <p>ECI announces the election schedule. The <strong>Model Code of Conduct (MCC)</strong> comes into effect immediately. Political parties cannot announce new schemes or make promises that may influence voters.</p>
+          <div class="tcard-tags"><span>MCC Begins</span><span>ECI Notifies</span></div>
         </div>
       </div>
-
       <div class="timeline-item right" data-aos="right">
         <div class="timeline-dot">2</div>
         <div class="timeline-card tilt-card">
-          <div class="tcard-icon">🏛️</div>
-          <h3>Candidate Nomination</h3>
-          <p>Political parties or independent citizens file nomination papers. Candidates must meet eligibility requirements — age, citizenship, residency.</p>
-          <div class="tcard-tags">
-            <span>Party-based</span><span>Independent</span><span>Petition</span>
-          </div>
+          <div class="tcard-icon">📋</div>
+          <h3>Voter Registration</h3>
+          <p>Citizens aged <strong>18+</strong> register via Form 6 on the National Voters' Service Portal (NVSP) or at local ERO offices. The Electoral Photo Identity Card (EPIC) / Voter ID is issued.</p>
+          <div class="tcard-tags"><span>Form 6</span><span>NVSP Portal</span><span>EPIC Card</span></div>
         </div>
       </div>
-
       <div class="timeline-item" data-aos="left">
         <div class="timeline-dot">3</div>
         <div class="timeline-card tilt-card">
-          <div class="tcard-icon">📣</div>
-          <h3>Election Campaign</h3>
-          <p>Candidates campaign to win public support through rallies, debates, media, and door-to-door outreach. Campaign finance laws regulate spending.</p>
-          <div class="tcard-tags">
-            <span>Debates</span><span>Rallies</span><span>Regulated</span>
-          </div>
+          <div class="tcard-icon">📝</div>
+          <h3>Nomination Filing</h3>
+          <p>Candidates file nomination papers with the Returning Officer. They must submit an affidavit declaring criminal background, assets, and educational qualifications. A security deposit is mandatory.</p>
+          <div class="tcard-tags"><span>Affidavit Required</span><span>Security Deposit</span><span>Party Symbol</span></div>
         </div>
       </div>
-
       <div class="timeline-item right" data-aos="right">
         <div class="timeline-dot">4</div>
         <div class="timeline-card tilt-card">
-          <div class="tcard-icon">✅</div>
-          <h3>Voting Day</h3>
-          <p>Registered voters cast their ballots at polling stations or via mail/absentee voting. Polling stations are staffed by trained election officials.</p>
-          <div class="tcard-tags">
-            <span>Secret Ballot</span><span>One Person One Vote</span>
-          </div>
+          <div class="tcard-icon">📣</div>
+          <h3>Campaign Period</h3>
+          <p>Parties campaign through rallies, social media, and door-to-door outreach. Campaign spending is capped (₹95 lakhs per candidate for Lok Sabha). Campaigning stops 48 hours before polling — the <strong>Silent Period</strong>.</p>
+          <div class="tcard-tags"><span>Spending Cap</span><span>48hr Silent Period</span></div>
         </div>
       </div>
-
       <div class="timeline-item" data-aos="left">
         <div class="timeline-dot">5</div>
         <div class="timeline-card tilt-card">
-          <div class="tcard-icon">🔢</div>
-          <h3>Vote Counting</h3>
-          <p>Ballots are counted — manually or electronically — under strict observation. Results are verified, recounted if close, and certified by election authorities.</p>
-          <div class="tcard-tags">
-            <span>Transparent</span><span>Observed</span><span>Certified</span>
-          </div>
+          <div class="tcard-icon">✅</div>
+          <h3>Polling Day</h3>
+          <p>Voters visit their assigned booth and vote using the <strong>Electronic Voting Machine (EVM)</strong>. They press the button next to their chosen candidate. The Voter Verifiable Paper Audit Trail (VVPAT) shows a paper slip for 7 seconds.</p>
+          <div class="tcard-tags"><span>EVM</span><span>VVPAT</span><span>Ink Mark</span><span>Secret</span></div>
         </div>
       </div>
-
       <div class="timeline-item right" data-aos="right">
         <div class="timeline-dot">6</div>
         <div class="timeline-card tilt-card">
+          <div class="tcard-icon">🔢</div>
+          <h3>Vote Counting</h3>
+          <p>EVM results are counted in the presence of candidates and observers. Results declared constituency-by-constituency. NOTA (None of the Above) votes are also counted separately.</p>
+          <div class="tcard-tags"><span>NOTA</span><span>Observed</span><span>Certified</span></div>
+        </div>
+      </div>
+      <div class="timeline-item" data-aos="left">
+        <div class="timeline-dot">7</div>
+        <div class="timeline-card tilt-card">
           <div class="tcard-icon">👑</div>
-          <h3>Results & Transition</h3>
-          <p>Winners are declared. Losers concede. A peaceful transfer of power — the hallmark of democracy — begins. New officials are sworn in.</p>
-          <div class="tcard-tags">
-            <span>Peaceful Transfer</span><span>Sworn In</span>
+          <h3>Government Formation</h3>
+          <p>The party/coalition with majority (272+ seats) forms the government. The President invites the leader to form the government. The Prime Minister and Cabinet are sworn in.</p>
+          <div class="tcard-tags"><span>272+ Seats</span><span>Coalition</span><span>PM Sworn In</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPES OF ELECTIONS -->
+<section class="section" id="types">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge">India's Electoral System</div>
+      <h2>Types of <span class="gradient-text">Elections in India</span></h2>
+    </div>
+    <div class="cards-grid">
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#ff9933,#138808)">🏛️</div>
+        <h3>Lok Sabha (General) Election</h3>
+        <p>Election for the lower house of Parliament. 543 constituencies across India. Held every 5 years. Winner forms central government.</p>
+        <div class="gc-meta">Every 5 Years · 543 Seats</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">🏢</div>
+        <h3>Rajya Sabha Election</h3>
+        <p>Upper house election. Members elected by State Legislative Assembly members (MLAs), NOT directly by voters. 238 elected + 12 nominated.</p>
+        <div class="gc-meta">Indirect Election · 250 Seats</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">🏙️</div>
+        <h3>State Legislative Assembly (Vidhan Sabha)</h3>
+        <p>State-level elections for MLAs. Each state has its own assembly. Parties need majority to form state government.</p>
+        <div class="gc-meta">Every 5 Years · State-level</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#10b981,#059669)">🏘️</div>
+        <h3>Panchayat / Municipal Elections</h3>
+        <p>Local body elections — Gram Panchayat, Nagar Palika, Municipal Corporation. Most direct impact on daily life. Conducted by State Election Commissions.</p>
+        <div class="gc-meta">Every 5 Years · Local Level</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">🔄</div>
+        <h3>By-Elections (Upchunav)</h3>
+        <p>Held when a seat falls vacant mid-term. Separate election only for that constituency. Uses same EVM process.</p>
+        <div class="gc-meta">As Needed</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">🎯</div>
+        <h3>Presidential Election</h3>
+        <p>President elected by Electoral College — elected MPs and MLAs. Votes are weighted. President is constitutional head of state.</p>
+        <div class="gc-meta">Every 5 Years · Indirect</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVM EXPLAINER -->
+<section class="section section-dark" id="evm">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge light">Technology</div>
+      <h2 style="color:#fff">EVM &amp; VVPAT — <span class="gradient-text">How It Works</span></h2>
+      <p style="color:#94a3b8">India replaced paper ballots with Electronic Voting Machines in 1999. Here's how the system works.</p>
+    </div>
+    <div class="evm-layout">
+      <div class="evm-visual tilt-card">
+        <div class="evm-box">
+          <div class="evm-label">CONTROL UNIT</div>
+          <div class="evm-screen">✔ Ready to Vote</div>
+        </div>
+        <div class="evm-cable">~~~</div>
+        <div class="evm-box ballot-unit">
+          <div class="evm-label">BALLOTING UNIT</div>
+          <div class="evm-btn" onclick="pressEVM(this)">🔵 Candidate A</div>
+          <div class="evm-btn" onclick="pressEVM(this)">🟠 Candidate B</div>
+          <div class="evm-btn" onclick="pressEVM(this)">🟢 Candidate C</div>
+          <div class="evm-btn nota" onclick="pressEVM(this)">⚪ NOTA</div>
+        </div>
+        <div class="evm-cable">~~~</div>
+        <div class="evm-box vvpat">
+          <div class="evm-label">VVPAT</div>
+          <div class="vvpat-screen" id="vvpatScreen">Press a button →</div>
+        </div>
+      </div>
+      <div class="evm-facts">
+        <div class="evm-fact tilt-card"><span>🔒</span><div><h4>Tamper-Proof</h4><p>EVMs are standalone machines, not connected to internet or any network. They cannot be hacked remotely.</p></div></div>
+        <div class="evm-fact tilt-card"><span>📄</span><div><h4>VVPAT Paper Trail</h4><p>After pressing EVM, a paper slip appears in VVPAT window for 7 seconds, confirming your vote before it's sealed.</p></div></div>
+        <div class="evm-fact tilt-card"><span>🔋</span><div><h4>Battery Powered</h4><p>Runs on 6V alkaline battery — works even in areas with no electricity. Can record up to 2,000 votes.</p></div></div>
+        <div class="evm-fact tilt-card"><span>⚪</span><div><h4>NOTA Option</h4><p>None of the Above — added in 2013 by Supreme Court order. Allows voters to reject all candidates.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOTER CHECKER -->
+<section class="section" id="checkvote">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge">Interactive Tool</div>
+      <h2>Check Your <span class="gradient-text">Voter Eligibility</span></h2>
+      <p>Answer a few questions to find out if you're eligible to vote in India.</p>
+    </div>
+    <div class="checker-card tilt-card" id="checkerCard">
+      <div class="checker-steps" id="checkerSteps">
+        <div class="checker-step active" id="step1">
+          <h3>Are you an Indian citizen?</h3>
+          <div class="checker-opts">
+            <button class="chk-btn" onclick="checkStep(1,'yes')">✅ Yes</button>
+            <button class="chk-btn no" onclick="checkStep(1,'no')">❌ No</button>
+          </div>
+        </div>
+        <div class="checker-step" id="step2">
+          <h3>Are you 18 years or older?</h3>
+          <div class="checker-opts">
+            <button class="chk-btn" onclick="checkStep(2,'yes')">✅ Yes, 18+</button>
+            <button class="chk-btn no" onclick="checkStep(2,'no')">❌ Under 18</button>
+          </div>
+        </div>
+        <div class="checker-step" id="step3">
+          <h3>Are you of sound mind (not disqualified by court)?</h3>
+          <div class="checker-opts">
+            <button class="chk-btn" onclick="checkStep(3,'yes')">✅ Yes</button>
+            <button class="chk-btn no" onclick="checkStep(3,'no')">❌ No</button>
+          </div>
+        </div>
+        <div class="checker-result hidden" id="checkerResult">
+          <div class="cr-icon" id="crIcon">🎉</div>
+          <h3 id="crTitle">You are eligible to vote!</h3>
+          <p id="crMsg">Register on the NVSP portal or visit your local ERO office.</p>
+          <div class="cr-actions">
+            <a href="https://voters.eci.gov.in" target="_blank" class="btn-primary">Register on NVSP →</a>
+            <button class="btn-ghost" onclick="resetChecker()">Check Again</button>
           </div>
         </div>
       </div>
@@ -179,254 +320,126 @@
   </div>
 </section>
 
-<!-- ─── TYPES OF ELECTIONS ────────────────────── -->
-<section class="section section-dark" id="stages">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-badge light">Types of Elections</div>
-      <h2 style="color:#fff;">Not All Elections Are <span class="gradient-text">The Same</span></h2>
-      <p style="color:#94a3b8;">Different offices, different scales, different rules.</p>
-    </div>
-    <div class="cards-grid">
-      <div class="glass-card tilt-card">
-        <div class="gc-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">🌍</div>
-        <h3>National / Federal</h3>
-        <p>Elects the head of government (President, Prime Minister) and national legislature. Highest stakes, largest scale.</p>
-        <div class="gc-meta">Every 4–5 years</div>
-      </div>
-      <div class="glass-card tilt-card">
-        <div class="gc-icon" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">🏙️</div>
-        <h3>State / Provincial</h3>
-        <p>Governs states, provinces, or regions. Elects governors, state legislators, and local executives.</p>
-        <div class="gc-meta">Every 4–5 years</div>
-      </div>
-      <div class="glass-card tilt-card">
-        <div class="gc-icon" style="background:linear-gradient(135deg,#10b981,#059669)">🏘️</div>
-        <h3>Local / Municipal</h3>
-        <p>Mayors, city councils, school boards — local elections have the most direct impact on everyday life.</p>
-        <div class="gc-meta">Every 2–4 years</div>
-      </div>
-      <div class="glass-card tilt-card">
-        <div class="gc-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">🔄</div>
-        <h3>By-Elections</h3>
-        <p>Held when a seat becomes vacant mid-term due to resignation, death, or removal from office.</p>
-        <div class="gc-meta">As needed</div>
-      </div>
-      <div class="glass-card tilt-card">
-        <div class="gc-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">📜</div>
-        <h3>Referendums</h3>
-        <p>Citizens vote directly on policy questions — Brexit, constitutional amendments, or new laws.</p>
-        <div class="gc-meta">Issue-specific</div>
-      </div>
-      <div class="glass-card tilt-card">
-        <div class="gc-icon" style="background:linear-gradient(135deg,#f97316,#fb923c)">🎯</div>
-        <h3>Primary Elections</h3>
-        <p>Parties select their candidate to compete in the general election. Open or closed to registered members.</p>
-        <div class="gc-meta">Pre-general election</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── BALLOT SYSTEMS ────────────────────────── -->
-<section class="section" id="systems">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-badge">Voting Systems</div>
-      <h2>How Votes Are <span class="gradient-text">Counted</span></h2>
-      <p>Different countries use different mathematical systems to translate votes into seats.</p>
-    </div>
-    <div class="systems-grid">
-      <div class="system-card tilt-card" style="--accent:#6366f1">
-        <div class="sys-number">01</div>
-        <h3>First Past the Post (FPTP)</h3>
-        <p>The candidate with the most votes wins — even without a majority. Simple, but can produce lopsided results. Used in USA, UK, India.</p>
-        <div class="sys-bar">
-          <div class="sys-fill" style="width:80%;background:#6366f1"></div>
-        </div>
-        <span class="sys-label">Simplicity Score: 8/10</span>
-      </div>
-      <div class="system-card tilt-card" style="--accent:#10b981">
-        <div class="sys-number">02</div>
-        <h3>Proportional Representation</h3>
-        <p>Seats are distributed proportional to the share of votes. More representative. Used in Germany, Netherlands, Brazil.</p>
-        <div class="sys-bar">
-          <div class="sys-fill" style="width:90%;background:#10b981"></div>
-        </div>
-        <span class="sys-label">Representation Score: 9/10</span>
-      </div>
-      <div class="system-card tilt-card" style="--accent:#f59e0b">
-        <div class="sys-number">03</div>
-        <h3>Ranked-Choice Voting</h3>
-        <p>Voters rank candidates 1, 2, 3... Least popular are eliminated in rounds until one has a majority. Used in Australia, Ireland.</p>
-        <div class="sys-bar">
-          <div class="sys-fill" style="width:75%;background:#f59e0b"></div>
-        </div>
-        <span class="sys-label">Fairness Score: 7.5/10</span>
-      </div>
-      <div class="system-card tilt-card" style="--accent:#ec4899">
-        <div class="sys-number">04</div>
-        <h3>Two-Round System</h3>
-        <p>If no candidate gets 50%+ in Round 1, a runoff between top two is held. Ensures a majority winner. Used in France, Russia.</p>
-        <div class="sys-bar">
-          <div class="sys-fill" style="width:85%;background:#ec4899"></div>
-        </div>
-        <span class="sys-label">Majority Score: 8.5/10</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── INTERACTIVE QUIZ ───────────────────────── -->
+<!-- QUIZ -->
 <section class="section section-dark" id="quiz">
   <div class="container">
     <div class="section-head">
       <div class="section-badge light">Test Yourself</div>
-      <h2 style="color:#fff;">Civic Knowledge <span class="gradient-text">Quiz</span></h2>
-      <p style="color:#94a3b8;">How much do you know about elections? Find out in 6 questions!</p>
+      <h2 style="color:#fff">Indian Elections <span class="gradient-text">Quiz</span></h2>
+      <p style="color:#94a3b8">How much do you know about India's election system?</p>
     </div>
-    <div class="quiz-container" id="quizContainer">
-      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
-      <div class="quiz-meta"><span id="quizCounter">Question 1 of 6</span><span id="quizScore">Score: 0</span></div>
-      <div class="quiz-card" id="quizCard">
-        <p class="quiz-question" id="quizQuestion">Loading...</p>
-        <div class="quiz-options" id="quizOptions"></div>
+    <div class="quiz-container">
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizFill"></div></div>
+      <div class="quiz-meta"><span id="qCounter">Question 1 of 8</span><span id="qScore">Score: 0</span></div>
+      <div id="quizCard" class="quiz-card">
+        <p class="quiz-question" id="qText">Loading...</p>
+        <div class="quiz-options" id="qOpts"></div>
       </div>
       <div class="quiz-result hidden" id="quizResult">
-        <div class="result-icon" id="resultIcon">🎉</div>
-        <h3 id="resultTitle">Excellent!</h3>
-        <p id="resultDesc">You scored <strong id="finalScore">0</strong> out of 6.</p>
+        <div class="result-icon" id="rIcon">🏆</div>
+        <h3 id="rTitle">Well Done!</h3>
+        <p>You scored <strong id="rScore">0</strong> out of 8</p>
         <button class="btn-primary" onclick="resetQuiz()">Try Again →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── MYTH BUSTERS ───────────────────────────── -->
-<section class="section" id="myths">
+<!-- ELECTION SCHEDULE -->
+<section class="section" id="schedule">
   <div class="container">
     <div class="section-head">
-      <div class="section-badge">Myth vs Fact</div>
-      <h2>Election <span class="gradient-text">Myths Busted</span></h2>
-      <p>Common misconceptions that keep people from participating in democracy.</p>
+      <div class="section-badge">Key Dates &amp; Schedule</div>
+      <h2>Lok Sabha 2024 — <span class="gradient-text">Phase-wise Schedule</span></h2>
+      <p>India's 2024 general elections were conducted in 7 phases over 44 days.</p>
+    </div>
+    <div class="schedule-table-wrap tilt-card">
+      <table class="schedule-table">
+        <thead><tr><th>Phase</th><th>Polling Date</th><th>States / UTs</th><th>Constituencies</th></tr></thead>
+        <tbody>
+          <tr><td><span class="phase-badge">Phase 1</span></td><td>19 April 2024</td><td>Tamil Nadu, Rajasthan, UP, Uttarakhand + 13 more</td><td>102</td></tr>
+          <tr><td><span class="phase-badge">Phase 2</span></td><td>26 April 2024</td><td>Kerala, Karnataka, Rajasthan, UP + 11 more</td><td>89</td></tr>
+          <tr><td><span class="phase-badge">Phase 3</span></td><td>7 May 2024</td><td>Gujarat, Goa, Karnataka, MP + 8 more</td><td>94</td></tr>
+          <tr><td><span class="phase-badge">Phase 4</span></td><td>13 May 2024</td><td>Andhra Pradesh, Telangana, MP, Maharashtra + 8 more</td><td>96</td></tr>
+          <tr><td><span class="phase-badge">Phase 5</span></td><td>20 May 2024</td><td>UP, Rajasthan, Maharashtra, J&amp;K + 5 more</td><td>49</td></tr>
+          <tr><td><span class="phase-badge">Phase 6</span></td><td>25 May 2024</td><td>Delhi, Haryana, UP, West Bengal + 5 more</td><td>58</td></tr>
+          <tr><td><span class="phase-badge">Phase 7</span></td><td>1 June 2024</td><td>UP, Punjab, Himachal Pradesh, Bihar + 5 more</td><td>57</td></tr>
+          <tr class="result-row"><td colspan="2"><strong>📊 Results Declared</strong></td><td colspan="2"><strong>4 June 2024</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- MYTHS -->
+<section class="section section-dark" id="myths">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge light">Myth vs Fact</div>
+      <h2 style="color:#fff">Indian Election <span class="gradient-text">Myths Busted</span></h2>
     </div>
     <div class="myths-grid">
       <div class="myth-card tilt-card">
-        <div class="myth-top">
-          <span class="myth-label">❌ MYTH</span>
-          <p>"My vote doesn't matter."</p>
-        </div>
-        <div class="myth-bottom">
-          <span class="fact-label">✅ FACT</span>
-          <p>Many elections are decided by hundreds — even <strong>single-digit</strong> vote margins. Every vote shapes the outcome.</p>
-        </div>
+        <div class="myth-top"><span class="myth-label">❌ MYTH</span><p>"EVMs can be hacked."</p></div>
+        <div class="myth-bottom"><span class="fact-label">✅ FACT</span><p>EVMs are not connected to any network. They're standalone machines. The Supreme Court and ECI have repeatedly upheld their integrity. VVPAT provides a paper audit trail.</p></div>
       </div>
       <div class="myth-card tilt-card">
-        <div class="myth-top">
-          <span class="myth-label">❌ MYTH</span>
-          <p>"Voting is too complicated."</p>
-        </div>
-        <div class="myth-bottom">
-          <span class="fact-label">✅ FACT</span>
-          <p>Registration takes minutes online. Voting takes 5–10 minutes. Many countries offer mail-in, early, and e-voting options.</p>
-        </div>
+        <div class="myth-top"><span class="myth-label">❌ MYTH</span><p>"You need to be educated to vote."</p></div>
+        <div class="myth-bottom"><span class="fact-label">✅ FACT</span><p>There is NO educational qualification to vote in India. Any Indian citizen 18+ can vote regardless of literacy. EVM has candidate photos and party symbols for easy identification.</p></div>
       </div>
       <div class="myth-card tilt-card">
-        <div class="myth-top">
-          <span class="myth-label">❌ MYTH</span>
-          <p>"Elections are rigged anyway."</p>
-        </div>
-        <div class="myth-bottom">
-          <span class="fact-label">✅ FACT</span>
-          <p>Democracies have multi-layer verification — independent observers, paper trails, recounts, and judicial oversight.</p>
-        </div>
+        <div class="myth-top"><span class="myth-label">❌ MYTH</span><p>"I can vote from anywhere in India."</p></div>
+        <div class="myth-bottom"><span class="fact-label">✅ FACT</span><p>You must vote in the constituency where you're registered. However, you can transfer your registration if you've moved. Postal ballot is available for specific categories.</p></div>
       </div>
       <div class="myth-card tilt-card">
-        <div class="myth-top">
-          <span class="myth-label">❌ MYTH</span>
-          <p>"Young people shouldn't vote."</p>
-        </div>
-        <div class="myth-bottom">
-          <span class="fact-label">✅ FACT</span>
-          <p>Young voters hold the most at stake — policies on education, climate, and jobs impact them most. Their voice is critical.</p>
-        </div>
+        <div class="myth-top"><span class="myth-label">❌ MYTH</span><p>"Only Voter ID card is accepted at booth."</p></div>
+        <div class="myth-bottom"><span class="fact-label">✅ FACT</span><p>12 alternate documents are accepted including Aadhaar, Passport, PAN Card, MNREGA card, and Bank/Post Office passbook with photo.</p></div>
       </div>
       <div class="myth-card tilt-card">
-        <div class="myth-top">
-          <span class="myth-label">❌ MYTH</span>
-          <p>"I have to be a party member to vote."</p>
-        </div>
-        <div class="myth-bottom">
-          <span class="fact-label">✅ FACT</span>
-          <p>In general elections, all registered citizens vote — party membership is only required for some primaries.</p>
-        </div>
+        <div class="myth-top"><span class="myth-label">❌ MYTH</span><p>"NOTA means the seat stays empty."</p></div>
+        <div class="myth-bottom"><span class="fact-label">✅ FACT</span><p>NOTA has no electoral value — the candidate with the highest votes still wins even if NOTA gets more votes. But it's a powerful symbolic protest vote.</p></div>
       </div>
       <div class="myth-card tilt-card">
-        <div class="myth-top">
-          <span class="myth-label">❌ MYTH</span>
-          <p>"Electronic voting is unsafe."</p>
-        </div>
-        <div class="myth-bottom">
-          <span class="fact-label">✅ FACT</span>
-          <p>Modern e-voting uses encryption, air-gapped systems, and paper trails. It often increases accessibility and accuracy.</p>
-        </div>
+        <div class="myth-top"><span class="myth-label">❌ MYTH</span><p>"Voting takes too long, not worth it."</p></div>
+        <div class="myth-bottom"><span class="fact-label">✅ FACT</span><p>Modern polling booths in India are highly organized. Average voting time is under 15 minutes. Employers must give paid leave on election day by law.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── RIGHTS SECTION ────────────────────────── -->
-<section class="section section-dark" id="register">
-  <div class="container">
-    <div class="rights-hero tilt-card">
-      <div class="rh-bg"></div>
-      <div class="rh-content">
-        <div class="rh-icon float-anim">🗳️</div>
-        <h2>Your Vote Is Your <span class="gradient-text">Voice</span></h2>
-        <p>Voting is both a <strong>right</strong> and a <strong>responsibility</strong>. Across history, millions fought and died for the right to vote. Don't let it go unused.</p>
-        <div class="rights-grid">
-          <div class="right-item"><span>🔒</span><p>Secret Ballot — no one can see how you voted</p></div>
-          <div class="right-item"><span>🆓</span><p>Free from coercion, threats, or bribery</p></div>
-          <div class="right-item"><span>♿</span><p>Accessible to voters with disabilities</p></div>
-          <div class="right-item"><span>📬</span><p>Mail-in and absentee options available</p></div>
-        </div>
-        <a href="https://www.vote.gov" target="_blank" rel="noopener" class="btn-primary large">Check Registration Status →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── FOOTER ────────────────────────────────── -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
       <div class="footer-brand">
-        <div class="logo">
-          <div class="logo-icon">🗳️</div>
-          <span>Vote<strong>Wise</strong></span>
+        <div class="logo">🇮🇳 <span>Vote<strong>India</strong></span></div>
+        <p>Empowering Indian citizens through election education. Built for Hackathon 2026.</p>
+        <div class="footer-socials">
+          <a href="https://voters.eci.gov.in" target="_blank">🌐 ECI Portal</a>
+          <a href="https://nvsp.in" target="_blank">📋 NVSP</a>
         </div>
-        <p>Empowering citizens through election education. Built for Hackathon 2026.</p>
       </div>
       <div class="footer-links">
         <h4>Learn</h4>
+        <a href="#eci">About ECI</a>
         <a href="#process">Election Process</a>
-        <a href="#stages">Types of Elections</a>
-        <a href="#systems">Voting Systems</a>
+        <a href="#types">Types of Elections</a>
+        <a href="#evm">EVM &amp; VVPAT</a>
         <a href="#myths">Myth Busters</a>
       </div>
       <div class="footer-links">
         <h4>Take Action</h4>
-        <a href="#quiz">Test Your Knowledge</a>
-        <a href="#register">Register to Vote</a>
-        <a href="https://www.vote.gov" target="_blank">Official Resources</a>
+        <a href="#checkvote">Check Eligibility</a>
+        <a href="#quiz">Take the Quiz</a>
+        <a href="https://voters.eci.gov.in" target="_blank">Register to Vote</a>
+        <a href="https://electoralsearch.eci.gov.in" target="_blank">Find Your Booth</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 VoteWise — Democracy is not a spectator sport. Made with ❤️ for Hackathon 2026.</p>
+      <p>© 2026 VoteIndia — Jai Hind 🇮🇳 | Made for Hackathon 2026 — Civic Tech Track | जनता का, जनता के लिए, जनता द्वारा</p>
     </div>
   </div>
 </footer>
-
 <script src="app.js"></script>
 </body>
 </html>
