@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VoteWise | Election Process Education</title>
+<meta name="description" content="Learn how elections work — from registration to results. A complete, interactive guide to the democratic process." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ─── CURSOR ───────────────────────────────── -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- ─── NAVBAR ──────────────────────────────── -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">
+      <div class="logo-icon">🗳️</div>
+      <span>Vote<strong>Wise</strong></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#process">Process</a></li>
+      <li><a href="#stages">Stages</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#myths">Myths</a></li>
+      <li><a href="#register" class="nav-cta">Register to Vote</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Floating 3D Cards -->
+  <div class="float-card fc1">📋<span>Register</span></div>
+  <div class="float-card fc2">🏛️<span>Candidate</span></div>
+  <div class="float-card fc3">✅<span>Vote!</span></div>
+  <div class="float-card fc4">📊<span>Results</span></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span> Hackathon 2026 — Civic Tech Track
+    </div>
+    <h1 class="hero-title">
+      Understand<br>
+      <span class="gradient-text">Democracy</span><br>
+      From the Inside.
+    </h1>
+    <p class="hero-sub">
+      The election process demystified — interactive, 3D, and built for every citizen.
+      From voter registration to final results, we break it all down.
+    </p>
+    <div class="hero-actions">
+      <a href="#process" class="btn-primary">Explore the Process ↓</a>
+      <a href="#quiz" class="btn-ghost">Take the Quiz →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span>180+</span><p>Countries Hold Elections</p></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span>4.2B</span><p>Eligible Voters Worldwide</p></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span>6 Steps</span><p>In Every Election</p></div>
+    </div>
+  </div>
+
+  <div class="hero-visual" id="heroVisual">
+    <div class="ballot-3d">
+      <div class="ballot-face front">
+        <div class="ballot-header">🗳️ Official Ballot</div>
+        <div class="ballot-option active">◉ Candidate A</div>
+        <div class="ballot-option">◯ Candidate B</div>
+        <div class="ballot-option">◯ Candidate C</div>
+        <div class="ballot-submit">CAST VOTE ✓</div>
+      </div>
+      <div class="ballot-face back"></div>
+      <div class="ballot-face right"></div>
+      <div class="ballot-face left"></div>
+      <div class="ballot-face top"></div>
+      <div class="ballot-face bottom"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS TIMELINE ──────────────────────── -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge">How It Works</div>
+      <h2>The Election <span class="gradient-text">Process</span></h2>
+      <p>Every free and fair election follows a structured sequence. Here's the full journey.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item" data-aos="left">
+        <div class="timeline-dot">1</div>
+        <div class="timeline-card tilt-card">
+          <div class="tcard-icon">📋</div>
+          <h3>Voter Registration</h3>
+          <p>Citizens must register before they can vote. Registration verifies identity, age (18+), and citizenship status. Deadlines vary by country and state.</p>
+          <div class="tcard-tags">
+            <span>ID Required</span><span>Deadline-bound</span><span>One-time</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item right" data-aos="right">
+        <div class="timeline-dot">2</div>
+        <div class="timeline-card tilt-card">
+          <div class="tcard-icon">🏛️</div>
+          <h3>Candidate Nomination</h3>
+          <p>Political parties or independent citizens file nomination papers. Candidates must meet eligibility requirements — age, citizenship, residency.</p>
+          <div class="tcard-tags">
+            <span>Party-based</span><span>Independent</span><span>Petition</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="left">
+        <div class="timeline-dot">3</div>
+        <div class="timeline-card tilt-card">
+          <div class="tcard-icon">📣</div>
+          <h3>Election Campaign</h3>
+          <p>Candidates campaign to win public support through rallies, debates, media, and door-to-door outreach. Campaign finance laws regulate spending.</p>
+          <div class="tcard-tags">
+            <span>Debates</span><span>Rallies</span><span>Regulated</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item right" data-aos="right">
+        <div class="timeline-dot">4</div>
+        <div class="timeline-card tilt-card">
+          <div class="tcard-icon">✅</div>
+          <h3>Voting Day</h3>
+          <p>Registered voters cast their ballots at polling stations or via mail/absentee voting. Polling stations are staffed by trained election officials.</p>
+          <div class="tcard-tags">
+            <span>Secret Ballot</span><span>One Person One Vote</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="left">
+        <div class="timeline-dot">5</div>
+        <div class="timeline-card tilt-card">
+          <div class="tcard-icon">🔢</div>
+          <h3>Vote Counting</h3>
+          <p>Ballots are counted — manually or electronically — under strict observation. Results are verified, recounted if close, and certified by election authorities.</p>
+          <div class="tcard-tags">
+            <span>Transparent</span><span>Observed</span><span>Certified</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item right" data-aos="right">
+        <div class="timeline-dot">6</div>
+        <div class="timeline-card tilt-card">
+          <div class="tcard-icon">👑</div>
+          <h3>Results & Transition</h3>
+          <p>Winners are declared. Losers concede. A peaceful transfer of power — the hallmark of democracy — begins. New officials are sworn in.</p>
+          <div class="tcard-tags">
+            <span>Peaceful Transfer</span><span>Sworn In</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TYPES OF ELECTIONS ────────────────────── -->
+<section class="section section-dark" id="stages">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge light">Types of Elections</div>
+      <h2 style="color:#fff;">Not All Elections Are <span class="gradient-text">The Same</span></h2>
+      <p style="color:#94a3b8;">Different offices, different scales, different rules.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">🌍</div>
+        <h3>National / Federal</h3>
+        <p>Elects the head of government (President, Prime Minister) and national legislature. Highest stakes, largest scale.</p>
+        <div class="gc-meta">Every 4–5 years</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">🏙️</div>
+        <h3>State / Provincial</h3>
+        <p>Governs states, provinces, or regions. Elects governors, state legislators, and local executives.</p>
+        <div class="gc-meta">Every 4–5 years</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#10b981,#059669)">🏘️</div>
+        <h3>Local / Municipal</h3>
+        <p>Mayors, city councils, school boards — local elections have the most direct impact on everyday life.</p>
+        <div class="gc-meta">Every 2–4 years</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">🔄</div>
+        <h3>By-Elections</h3>
+        <p>Held when a seat becomes vacant mid-term due to resignation, death, or removal from office.</p>
+        <div class="gc-meta">As needed</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">📜</div>
+        <h3>Referendums</h3>
+        <p>Citizens vote directly on policy questions — Brexit, constitutional amendments, or new laws.</p>
+        <div class="gc-meta">Issue-specific</div>
+      </div>
+      <div class="glass-card tilt-card">
+        <div class="gc-icon" style="background:linear-gradient(135deg,#f97316,#fb923c)">🎯</div>
+        <h3>Primary Elections</h3>
+        <p>Parties select their candidate to compete in the general election. Open or closed to registered members.</p>
+        <div class="gc-meta">Pre-general election</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BALLOT SYSTEMS ────────────────────────── -->
+<section class="section" id="systems">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge">Voting Systems</div>
+      <h2>How Votes Are <span class="gradient-text">Counted</span></h2>
+      <p>Different countries use different mathematical systems to translate votes into seats.</p>
+    </div>
+    <div class="systems-grid">
+      <div class="system-card tilt-card" style="--accent:#6366f1">
+        <div class="sys-number">01</div>
+        <h3>First Past the Post (FPTP)</h3>
+        <p>The candidate with the most votes wins — even without a majority. Simple, but can produce lopsided results. Used in USA, UK, India.</p>
+        <div class="sys-bar">
+          <div class="sys-fill" style="width:80%;background:#6366f1"></div>
+        </div>
+        <span class="sys-label">Simplicity Score: 8/10</span>
+      </div>
+      <div class="system-card tilt-card" style="--accent:#10b981">
+        <div class="sys-number">02</div>
+        <h3>Proportional Representation</h3>
+        <p>Seats are distributed proportional to the share of votes. More representative. Used in Germany, Netherlands, Brazil.</p>
+        <div class="sys-bar">
+          <div class="sys-fill" style="width:90%;background:#10b981"></div>
+        </div>
+        <span class="sys-label">Representation Score: 9/10</span>
+      </div>
+      <div class="system-card tilt-card" style="--accent:#f59e0b">
+        <div class="sys-number">03</div>
+        <h3>Ranked-Choice Voting</h3>
+        <p>Voters rank candidates 1, 2, 3... Least popular are eliminated in rounds until one has a majority. Used in Australia, Ireland.</p>
+        <div class="sys-bar">
+          <div class="sys-fill" style="width:75%;background:#f59e0b"></div>
+        </div>
+        <span class="sys-label">Fairness Score: 7.5/10</span>
+      </div>
+      <div class="system-card tilt-card" style="--accent:#ec4899">
+        <div class="sys-number">04</div>
+        <h3>Two-Round System</h3>
+        <p>If no candidate gets 50%+ in Round 1, a runoff between top two is held. Ensures a majority winner. Used in France, Russia.</p>
+        <div class="sys-bar">
+          <div class="sys-fill" style="width:85%;background:#ec4899"></div>
+        </div>
+        <span class="sys-label">Majority Score: 8.5/10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INTERACTIVE QUIZ ───────────────────────── -->
+<section class="section section-dark" id="quiz">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge light">Test Yourself</div>
+      <h2 style="color:#fff;">Civic Knowledge <span class="gradient-text">Quiz</span></h2>
+      <p style="color:#94a3b8;">How much do you know about elections? Find out in 6 questions!</p>
+    </div>
+    <div class="quiz-container" id="quizContainer">
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+      <div class="quiz-meta"><span id="quizCounter">Question 1 of 6</span><span id="quizScore">Score: 0</span></div>
+      <div class="quiz-card" id="quizCard">
+        <p class="quiz-question" id="quizQuestion">Loading...</p>
+        <div class="quiz-options" id="quizOptions"></div>
+      </div>
+      <div class="quiz-result hidden" id="quizResult">
+        <div class="result-icon" id="resultIcon">🎉</div>
+        <h3 id="resultTitle">Excellent!</h3>
+        <p id="resultDesc">You scored <strong id="finalScore">0</strong> out of 6.</p>
+        <button class="btn-primary" onclick="resetQuiz()">Try Again →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MYTH BUSTERS ───────────────────────────── -->
+<section class="section" id="myths">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge">Myth vs Fact</div>
+      <h2>Election <span class="gradient-text">Myths Busted</span></h2>
+      <p>Common misconceptions that keep people from participating in democracy.</p>
+    </div>
+    <div class="myths-grid">
+      <div class="myth-card tilt-card">
+        <div class="myth-top">
+          <span class="myth-label">❌ MYTH</span>
+          <p>"My vote doesn't matter."</p>
+        </div>
+        <div class="myth-bottom">
+          <span class="fact-label">✅ FACT</span>
+          <p>Many elections are decided by hundreds — even <strong>single-digit</strong> vote margins. Every vote shapes the outcome.</p>
+        </div>
+      </div>
+      <div class="myth-card tilt-card">
+        <div class="myth-top">
+          <span class="myth-label">❌ MYTH</span>
+          <p>"Voting is too complicated."</p>
+        </div>
+        <div class="myth-bottom">
+          <span class="fact-label">✅ FACT</span>
+          <p>Registration takes minutes online. Voting takes 5–10 minutes. Many countries offer mail-in, early, and e-voting options.</p>
+        </div>
+      </div>
+      <div class="myth-card tilt-card">
+        <div class="myth-top">
+          <span class="myth-label">❌ MYTH</span>
+          <p>"Elections are rigged anyway."</p>
+        </div>
+        <div class="myth-bottom">
+          <span class="fact-label">✅ FACT</span>
+          <p>Democracies have multi-layer verification — independent observers, paper trails, recounts, and judicial oversight.</p>
+        </div>
+      </div>
+      <div class="myth-card tilt-card">
+        <div class="myth-top">
+          <span class="myth-label">❌ MYTH</span>
+          <p>"Young people shouldn't vote."</p>
+        </div>
+        <div class="myth-bottom">
+          <span class="fact-label">✅ FACT</span>
+          <p>Young voters hold the most at stake — policies on education, climate, and jobs impact them most. Their voice is critical.</p>
+        </div>
+      </div>
+      <div class="myth-card tilt-card">
+        <div class="myth-top">
+          <span class="myth-label">❌ MYTH</span>
+          <p>"I have to be a party member to vote."</p>
+        </div>
+        <div class="myth-bottom">
+          <span class="fact-label">✅ FACT</span>
+          <p>In general elections, all registered citizens vote — party membership is only required for some primaries.</p>
+        </div>
+      </div>
+      <div class="myth-card tilt-card">
+        <div class="myth-top">
+          <span class="myth-label">❌ MYTH</span>
+          <p>"Electronic voting is unsafe."</p>
+        </div>
+        <div class="myth-bottom">
+          <span class="fact-label">✅ FACT</span>
+          <p>Modern e-voting uses encryption, air-gapped systems, and paper trails. It often increases accessibility and accuracy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RIGHTS SECTION ────────────────────────── -->
+<section class="section section-dark" id="register">
+  <div class="container">
+    <div class="rights-hero tilt-card">
+      <div class="rh-bg"></div>
+      <div class="rh-content">
+        <div class="rh-icon float-anim">🗳️</div>
+        <h2>Your Vote Is Your <span class="gradient-text">Voice</span></h2>
+        <p>Voting is both a <strong>right</strong> and a <strong>responsibility</strong>. Across history, millions fought and died for the right to vote. Don't let it go unused.</p>
+        <div class="rights-grid">
+          <div class="right-item"><span>🔒</span><p>Secret Ballot — no one can see how you voted</p></div>
+          <div class="right-item"><span>🆓</span><p>Free from coercion, threats, or bribery</p></div>
+          <div class="right-item"><span>♿</span><p>Accessible to voters with disabilities</p></div>
+          <div class="right-item"><span>📬</span><p>Mail-in and absentee options available</p></div>
+        </div>
+        <a href="https://www.vote.gov" target="_blank" rel="noopener" class="btn-primary large">Check Registration Status →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">🗳️</div>
+          <span>Vote<strong>Wise</strong></span>
+        </div>
+        <p>Empowering citizens through election education. Built for Hackathon 2026.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Learn</h4>
+        <a href="#process">Election Process</a>
+        <a href="#stages">Types of Elections</a>
+        <a href="#systems">Voting Systems</a>
+        <a href="#myths">Myth Busters</a>
+      </div>
+      <div class="footer-links">
+        <h4>Take Action</h4>
+        <a href="#quiz">Test Your Knowledge</a>
+        <a href="#register">Register to Vote</a>
+        <a href="https://www.vote.gov" target="_blank">Official Resources</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 VoteWise — Democracy is not a spectator sport. Made with ❤️ for Hackathon 2026.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
