@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
 <link rel="stylesheet" href="india.css"/>
+<link rel="stylesheet" href="features.css"/>
 <link rel="stylesheet" href="mobile.css"/>
 </head>
 <body>
@@ -24,9 +25,10 @@
       <li><a href="#process">Process</a></li>
       <li><a href="#types">Elections</a></li>
       <li><a href="#evm">EVM</a></li>
+      <li><a href="#register">Register</a></li>
+      <li><a href="#results">Results</a></li>
       <li><a href="#quiz">Quiz</a></li>
-      <li><a href="#schedule">Schedule</a></li>
-      <li><a href="#checkvote" class="nav-cta">Check Voter ID</a></li>
+      <li><a href="#register" class="nav-cta">Get Voter Card</a></li>
     </ul>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
   </div>
@@ -407,6 +409,212 @@
   </div>
 </section>
 
+<!-- COUNTDOWN TIMER -->
+<section class="section" id="countdown">
+  <div class="container">
+    <div class="countdown-banner tilt-card">
+      <div class="cb-bg"></div>
+      <div class="cb-content">
+        <div class="cb-icon float-anim">🗳️</div>
+        <h2>Next Big Election: <span class="gradient-text">Bihar Assembly 2025</span></h2>
+        <p style="color:#94a3b8;margin:.5rem 0 2rem">Scheduled for late 2025 — register now before the deadline!</p>
+        <div class="countdown-grid" id="countdownGrid">
+          <div class="cd-box"><span id="cdDays">000</span><p>Days</p></div>
+          <div class="cd-box"><span id="cdHours">00</span><p>Hours</p></div>
+          <div class="cd-box"><span id="cdMins">00</span><p>Minutes</p></div>
+          <div class="cd-box"><span id="cdSecs">00</span><p>Seconds</p></div>
+        </div>
+        <a href="#register" class="btn-primary large" style="margin-top:2rem">Register to Vote Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOTER CARD REGISTRATION -->
+<section class="section section-dark" id="register">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge light">🪪 Form 6 — EPIC Card</div>
+      <h2 style="color:#fff">Register for Your <span class="gradient-text">Voter ID Card</span></h2>
+      <p style="color:#94a3b8">Fill this form to generate your mock EPIC (Electoral Photo Identity Card) preview and get step-by-step guidance to register officially.</p>
+    </div>
+    <div class="reg-layout">
+      <div class="reg-form tilt-card">
+        <h3>📋 Voter Registration Form (Form 6)</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="regName" placeholder="As per Aadhaar Card" />
+          </div>
+          <div class="form-group">
+            <label>Date of Birth *</label>
+            <input type="date" id="regDob" />
+          </div>
+          <div class="form-group">
+            <label>Gender *</label>
+            <select id="regGender">
+              <option value="">Select Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>State *</label>
+            <select id="regState">
+              <option value="">Select State</option>
+              <option>Andhra Pradesh</option><option>Bihar</option><option>Delhi</option>
+              <option>Gujarat</option><option>Karnataka</option><option>Kerala</option>
+              <option>Madhya Pradesh</option><option>Maharashtra</option><option>Punjab</option>
+              <option>Rajasthan</option><option>Tamil Nadu</option><option>Telangana</option>
+              <option>Uttar Pradesh</option><option>West Bengal</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Residential Address *</label>
+            <input type="text" id="regAddress" placeholder="House No, Street, Village/Town" />
+          </div>
+          <div class="form-group">
+            <label>Aadhaar Number (last 4 digits)</label>
+            <input type="text" id="regAadhaar" placeholder="XXXX" maxlength="4" />
+          </div>
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" id="regMobile" placeholder="10-digit mobile" maxlength="10" />
+          </div>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="regConsent" />
+          <label for="regConsent">I declare that I am an Indian citizen, aged 18+, and the above information is correct.</label>
+        </div>
+        <button class="btn-primary" style="width:100%;margin-top:1.5rem;justify-content:center" onclick="generateVoterCard()">Generate EPIC Card Preview 🪪</button>
+      </div>
+
+      <div class="epic-preview" id="epicPreview">
+        <div class="epic-placeholder" id="epicPlaceholder">
+          <div style="font-size:4rem;margin-bottom:1rem">🪪</div>
+          <p>Fill the form and click<br><strong>"Generate EPIC Card Preview"</strong><br>to see your Voter ID card</p>
+        </div>
+        <div class="epic-card hidden" id="epicCard">
+          <div class="epic-header">
+            <span>🇮🇳</span>
+            <div>
+              <div class="epic-title">ELECTION COMMISSION OF INDIA</div>
+              <div class="epic-sub">ELECTORS PHOTO IDENTITY CARD</div>
+            </div>
+            <span>🗳️</span>
+          </div>
+          <div class="epic-body">
+            <div class="epic-photo" id="epicPhoto">👤</div>
+            <div class="epic-details">
+              <div class="epic-field"><span>Name:</span><strong id="eName">-</strong></div>
+              <div class="epic-field"><span>Father/Husband:</span><strong>Sri. [Guardian]</strong></div>
+              <div class="epic-field"><span>Date of Birth:</span><strong id="eDob">-</strong></div>
+              <div class="epic-field"><span>Gender:</span><strong id="eGender">-</strong></div>
+              <div class="epic-field"><span>Address:</span><strong id="eAddress">-</strong></div>
+            </div>
+          </div>
+          <div class="epic-footer">
+            <div>
+              <div class="epic-field"><span>EPIC No:</span><strong id="eEpic">-</strong></div>
+              <div class="epic-field"><span>Constituency:</span><strong id="eConst">-</strong></div>
+            </div>
+            <div class="epic-sign">Signature<br>_________</div>
+          </div>
+          <div class="epic-watermark">ECI</div>
+        </div>
+        <button class="btn-ghost" id="downloadBtn" onclick="downloadCard()" style="width:100%;margin-top:1rem;justify-content:center;display:none">⬇️ Download Card (PNG)</button>
+        <div class="epic-note">⚠️ This is a <strong>demo preview only</strong>. To get your official Voter ID, register at <a href="https://voters.eci.gov.in" target="_blank">voters.eci.gov.in</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS DASHBOARD -->
+<section class="section" id="results">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge">📊 2024 Results</div>
+      <h2>Lok Sabha 2024 — <span class="gradient-text">Election Results</span></h2>
+      <p>Top party-wise seat count from the 18th General Elections.</p>
+    </div>
+    <div class="results-layout">
+      <div class="results-chart tilt-card">
+        <h3 style="margin-bottom:1.5rem;font-weight:800">Seats Won (Top Parties)</h3>
+        <div class="bar-chart" id="barChart"></div>
+        <div class="majority-line"><span>Majority Mark — 272 seats</span></div>
+      </div>
+      <div class="results-facts">
+        <div class="rf-card tilt-card" style="border-top:3px solid #ff9933">
+          <div class="rf-icon">🏆</div>
+          <h4>NDA Alliance</h4>
+          <div class="rf-num">293</div>
+          <p>Seats — formed the government</p>
+        </div>
+        <div class="rf-card tilt-card" style="border-top:3px solid #0ea5e9">
+          <div class="rf-icon">🔵</div>
+          <h4>INDIA Alliance</h4>
+          <div class="rf-num">234</div>
+          <p>Seats — opposition bloc</p>
+        </div>
+        <div class="rf-card tilt-card" style="border-top:3px solid #6366f1">
+          <div class="rf-icon">📊</div>
+          <h4>Voter Turnout</h4>
+          <div class="rf-num">65.8%</div>
+          <p>Overall national turnout</p>
+        </div>
+        <div class="rf-card tilt-card" style="border-top:3px solid #10b981">
+          <div class="rf-icon">👩</div>
+          <h4>Women Winners</h4>
+          <div class="rf-num">74</div>
+          <p>Women elected to Lok Sabha</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOTH FINDER -->
+<section class="section section-dark" id="booth">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-badge light">🗺️ Find Your Booth</div>
+      <h2 style="color:#fff">Polling Booth <span class="gradient-text">Finder</span></h2>
+      <p style="color:#94a3b8">Select your state to see sample polling booth information and how to find yours on Election Day.</p>
+    </div>
+    <div class="booth-layout">
+      <div class="booth-selector tilt-card">
+        <label style="color:#94a3b8;font-size:.85rem;font-weight:700;margin-bottom:.5rem;display:block">SELECT YOUR STATE</label>
+        <select id="boothState" onchange="findBooth()" style="width:100%;padding:1rem;border-radius:.8rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:1rem;font-family:Outfit,sans-serif;cursor:pointer">
+          <option value="">-- Choose State --</option>
+          <option value="UP">Uttar Pradesh</option>
+          <option value="MH">Maharashtra</option>
+          <option value="DL">Delhi</option>
+          <option value="KA">Karnataka</option>
+          <option value="TN">Tamil Nadu</option>
+          <option value="WB">West Bengal</option>
+          <option value="GJ">Gujarat</option>
+          <option value="RJ">Rajasthan</option>
+        </select>
+        <div class="booth-info hidden" id="boothInfo"></div>
+      </div>
+      <div class="booth-tips tilt-card">
+        <h3>📌 What to Bring on Polling Day</h3>
+        <ul class="booth-list">
+          <li>🪪 Voter ID card or any of 12 approved photo IDs</li>
+          <li>📋 Voter slip (sent to your registered address)</li>
+          <li>🚫 No mobile phones inside the booth</li>
+          <li>🚫 No party symbols or campaign material</li>
+          <li>✍️ Indelible ink will be applied to your index finger</li>
+          <li>⏰ Polls open 7 AM – 6 PM (varies by constituency)</li>
+          <li>👴 Senior citizens (85+) get home voting facility</li>
+          <li>♿ PWD voters get priority queuing and ramps</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
@@ -441,5 +649,6 @@
   </div>
 </footer>
 <script src="app.js"></script>
+<script src="features.js"></script>
 </body>
 </html>
